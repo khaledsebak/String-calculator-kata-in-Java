@@ -36,6 +36,13 @@ public class StringCalculatorTest {
         assertResultForGivenInputStringIs(fourNumbers, sumOfNumbers);
     }
 
+    @Test
+    public void recognizesNewLinesAsSeparator() throws Exception {
+        String numbersSeparatedWithNewLinesAndCommas = "2,3\n4";
+        int sumOfNumbers = 2 + 3 + 4;
+        assertResultForGivenInputStringIs(numbersSeparatedWithNewLinesAndCommas, sumOfNumbers);
+    }
+
     private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
         int actualResult = new StringCalculator().add(inputString);
         assertEquals(format("sum of numbers in input string \"%s\"", inputString), expectedResult, actualResult);
