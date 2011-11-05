@@ -69,6 +69,12 @@ public class StringCalculatorTest {
         assertResultForGivenInputStringIs(customSeparatorWithNoNumbers, 9);
     }
 
+    @Test
+    public void regexSpecialCharactersCanBeSeparatorsToo() throws Exception {
+        String dotSeparatedNumbers = "//.\n17.18";
+        assertResultForGivenInputStringIs(dotSeparatedNumbers, 17 + 18);
+    }
+
     private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
         int actualResult = new StringCalculator().add(inputString);
         assertEquals(format("sum of numbers in input string \"%s\"", inputString), expectedResult, actualResult);

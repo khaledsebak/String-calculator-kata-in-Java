@@ -37,7 +37,7 @@ public class NumbersParser {
         String numbers = numbersString;
         Matcher separatorDefinitionMatcher = separatorDefinitionPattern.matcher(numbersString);
         if (separatorDefinitionMatcher.matches()) {
-            separator = separatorDefinitionMatcher.group(2);
+            separator = Pattern.quote(separatorDefinitionMatcher.group(2));
             numbers = numbersString.substring(separatorDefinitionMatcher.group(1).length());
         }
         terms.addAll(asList(numbers.split(separator)));
