@@ -52,9 +52,21 @@ public class StringCalculatorTest {
 
     @Test
     public void usesCustomSeparatorDefinedInFirstLineOfInput() throws Exception {
-        String numbersWithCustomSeparator = "//;\n5;6";
-        int sumOfNumbers = 5 + 6;
+        String numbersWithCustomSeparator = "//;\n5;6;8";
+        int sumOfNumbers = 5 + 6 + 8;
         assertResultForGivenInputStringIs(numbersWithCustomSeparator, sumOfNumbers);
+    }
+
+    @Test
+    public void givenCustomSeparatorButNoNumbersReturnsZero() throws Exception {
+        String customSeparatorWithNoNumbers = "//;\n";
+        assertResultForGivenInputStringIs(customSeparatorWithNoNumbers, 0);
+    }
+
+    @Test
+    public void givenCustomSeparatorButJustOneNumberReturnsThatNumberValue() throws Exception {
+        String customSeparatorWithNoNumbers = "//;\n9";
+        assertResultForGivenInputStringIs(customSeparatorWithNoNumbers, 9);
     }
 
     private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
