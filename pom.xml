@@ -6,7 +6,7 @@
 
     <groupId>mdx.katas</groupId>
     <artifactId>string-calculator-1</artifactId>
-    <version>1.0</version>
+    <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>Code Kata - String Calculator (1)</name>
     <description>
