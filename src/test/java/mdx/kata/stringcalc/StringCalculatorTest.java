@@ -37,7 +37,14 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void recognizesNewLinesAsSeparator() throws Exception {
+    public void allowsUsingNewLinesAsSeparators() throws Exception {
+        String numbersSeparatedWithNewLines = "3\n4\n6";
+        int sumOfNumbers = 3 + 4 + 6;
+        assertResultForGivenInputStringIs(numbersSeparatedWithNewLines, sumOfNumbers);
+    }
+
+    @Test
+    public void allowsMixingComasOrNewLinesAsSeparators() throws Exception {
         String numbersSeparatedWithNewLinesAndCommas = "2,3\n4";
         int sumOfNumbers = 2 + 3 + 4;
         assertResultForGivenInputStringIs(numbersSeparatedWithNewLinesAndCommas, sumOfNumbers);

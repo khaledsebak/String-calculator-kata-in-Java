@@ -1,12 +1,8 @@
 package mdx.kata.stringcalc;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import static com.google.common.collect.Lists.transform;
 
 /**
  * @author Marcin Deryło <marcinderylo@gmail.com>
@@ -19,7 +15,7 @@ public class StringCalculator {
     }
 
     private List<Integer> parseTerms(String comaSeparatedNumbers) {
-        List<String> stringTerms = Lists.newArrayList();
+        List<String> stringTerms = new ArrayList<String>();
         if (!comaSeparatedNumbers.isEmpty()) {
             stringTerms.addAll(split(comaSeparatedNumbers));
         }
@@ -27,15 +23,16 @@ public class StringCalculator {
     }
 
     private List<Integer> parseIntegers(List<String> stringTerms) {
-        return transform(stringTerms, new Function<String, Integer>() {
-            public Integer apply(String input) {
-                return toInteger(input);
-            }
-        });
+        List<Integer> terms = new ArrayList<Integer>();
+        for (String stringTerm : stringTerms) {
+            terms.add(toInteger(stringTerm));
+        }
+        return terms;
     }
 
     private List<String> split(String comaSeparatedNumbers) {
-        String[] numbers = comaSeparatedNumbers.split(",");
+        String separatorRegex = "[,\n]";
+        String[] numbers = comaSeparatedNumbers.split(separatorRegex);
         return Arrays.asList(numbers);
     }
 
