@@ -17,40 +17,42 @@ public class NumbersParser {
     public static final String defaultSeparatorRegex = "[,\n]";
 
     private final String numbersString;
+    private List<String> terms;
 
     public NumbersParser(String input) {
         this.numbersString = input;
+        terms = new ArrayList<String>();
     }
 
     public List<Integer> parseIntegers() {
-        List<String> stringTerms = new ArrayList<String>();
-        if (containsNumbers(numbersString)) {
-            stringTerms.addAll(split(numbersString));
+        if (inputContainsNumbers()) {
+            parseNumbers();
         }
-        return parseIntegers(stringTerms);
+        return termsAsIntegers();
     }
 
-    private List<Integer> parseIntegers(List<String> stringTerms) {
-        List<Integer> terms = new ArrayList<Integer>();
-        for (String stringTerm : stringTerms) {
-            terms.add(toInteger(stringTerm));
-        }
-        return terms;
-    }
-
-    private List<String> split(String input) {
+    private void parseNumbers() {
+        terms.clear();
         String separator = defaultSeparatorRegex;
-        String numbers = input;
-        Matcher separatorDefinitionMatcher = separatorDefinitionPattern.matcher(input);
+        String numbers = numbersString;
+        Matcher separatorDefinitionMatcher = separatorDefinitionPattern.matcher(numbersString);
         if (separatorDefinitionMatcher.matches()) {
             separator = separatorDefinitionMatcher.group(2);
-            numbers = input.substring(separatorDefinitionMatcher.group(1).length());
+            numbers = numbersString.substring(separatorDefinitionMatcher.group(1).length());
         }
-        return asList(numbers.split(separator));
+        terms.addAll(asList(numbers.split(separator)));
     }
 
-    private boolean containsNumbers(String input) {
-        return !input.matches(noNumbersRegex);
+    private boolean inputContainsNumbers() {
+        return !numbersString.matches(noNumbersRegex);
+    }
+
+    private List<Integer> termsAsIntegers() {
+        List<Integer> numbers = new ArrayList<Integer>();
+        for (String stringTerm : terms) {
+            numbers.add(toInteger(stringTerm));
+        }
+        return numbers;
     }
 
     private Integer toInteger(String input) {
