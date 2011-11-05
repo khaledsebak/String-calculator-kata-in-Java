@@ -20,8 +20,15 @@ public class StringCalculatorTest {
     public void givenEmptyStringReturnsZero() throws Exception {
         String emptyString = "";
         int expectedResult = 0;
-        int result = calculator.add(emptyString);
-        assertEquals("result for input string \"" + emptyString + "\"", expectedResult, result);
+        int actualResult = calculator.add(emptyString);
+        assertEquals("result for input string \"" + emptyString + "\"", expectedResult, actualResult);
     }
 
+    @Test
+    public void givenSingleNumberReturnsItsValue() throws Exception {
+        String singleNumber = "123";
+        int expectedResult = 123;
+        int actualResult = calculator.add(singleNumber);
+        assertEquals("result for input string \"" + singleNumber + "\"", expectedResult, actualResult);
+    }
 }
