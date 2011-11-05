@@ -1,34 +1,31 @@
 package mdx.kata.stringcalc;
 
-import org.junit.Before;
 import org.junit.Test;
 
+import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
 
 /**
  * @author Marcin Deryło <marcinderylo@gmail.com>
  */
 public class StringCalculatorTest {
-    private StringCalculator calculator;
-
-    @Before
-    public void createCalculator() throws Exception {
-        calculator = new StringCalculator();
-    }
-
     @Test
     public void givenEmptyStringReturnsZero() throws Exception {
         String emptyString = "";
         int expectedResult = 0;
-        int actualResult = calculator.add(emptyString);
-        assertEquals("result for input string \"" + emptyString + "\"", expectedResult, actualResult);
+        assertResultForGivenInputStringIs(emptyString, expectedResult);
     }
 
     @Test
     public void givenSingleNumberReturnsItsValue() throws Exception {
         String singleNumber = "123";
         int expectedResult = 123;
-        int actualResult = calculator.add(singleNumber);
-        assertEquals("result for input string \"" + singleNumber + "\"", expectedResult, actualResult);
+        assertResultForGivenInputStringIs(singleNumber, expectedResult);
+    }
+
+
+    private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
+        int actualResult = new StringCalculator().add(inputString);
+        assertEquals(format("sum of numbers in input string \"%s\"", inputString), expectedResult, actualResult);
     }
 }
