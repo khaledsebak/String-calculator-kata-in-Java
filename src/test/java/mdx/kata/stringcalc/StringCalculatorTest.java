@@ -29,6 +29,13 @@ public class StringCalculatorTest {
         assertResultForGivenInputStringIs(pairOfNumbers, sumOfNumbers);
     }
 
+    @Test
+    public void givenMoreThanTwoComaSeparatedNumbersReturnsTheirSum() throws Exception {
+        String fourNumbers = "1,2,3,4";
+        int sumOfNumbers = 1 + 2 + 3 + 4;
+        assertResultForGivenInputStringIs(fourNumbers, sumOfNumbers);
+    }
+
     private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
         int actualResult = new StringCalculator().add(inputString);
         assertEquals(format("sum of numbers in input string \"%s\"", inputString), expectedResult, actualResult);
