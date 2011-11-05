@@ -8,6 +8,8 @@ import java.util.List;
  */
 public class StringCalculator {
 
+    public static final int MAX_VALUE = 1000;
+
     public int add(String numbers) {
         List<Integer> terms = parseTerms(numbers);
         ensureNoNegatives(terms);
@@ -22,7 +24,7 @@ public class StringCalculator {
     private List<Integer> filterOutBigOnes(List<Integer> terms) {
         List<Integer> remainingTerms = new ArrayList<Integer>();
         for (Integer term : terms) {
-            if (term <= 1000) {
+            if (term <= MAX_VALUE) {
                 remainingTerms.add(term);
             }
         }

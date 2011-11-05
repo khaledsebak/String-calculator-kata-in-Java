@@ -103,7 +103,7 @@ public class StringCalculatorTest {
     @Test
     public void numbersUpTo1000AreSummedUp() throws Exception {
         String singleBigNumber = "1000,1";
-        assertResultForGivenInputStringIs(singleBigNumber, 1001);
+        assertResultForGivenInputStringIs(singleBigNumber, 1000 + 1);
     }
 
     private void assertInputStringCausesExceptionToBeThrownWithMessage(String inputString, String expectedErrorMsg) {
