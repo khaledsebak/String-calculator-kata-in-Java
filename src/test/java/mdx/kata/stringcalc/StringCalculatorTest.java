@@ -88,6 +88,24 @@ public class StringCalculatorTest {
         assertInputStringCausesExceptionToBeThrownWithMessage(numbersWithNegativeNumber, "Negatives not allowed: [-4, -2]");
     }
 
+    @Test
+    public void numberGreaterThan1000IsIgnored() throws Exception {
+        String singleBigNumber = "1001";
+        assertResultForGivenInputStringIs(singleBigNumber, 0);
+    }
+
+    @Test
+    public void multipleNumbersGreaterThan1000AreIgnored() throws Exception {
+        String singleBigNumber = "1001,1,1002";
+        assertResultForGivenInputStringIs(singleBigNumber, 1);
+    }
+
+    @Test
+    public void numbersUpTo1000AreSummedUp() throws Exception {
+        String singleBigNumber = "1000,1";
+        assertResultForGivenInputStringIs(singleBigNumber, 1001);
+    }
+
     private void assertInputStringCausesExceptionToBeThrownWithMessage(String inputString, String expectedErrorMsg) {
         try {
             calculateSum(inputString);
