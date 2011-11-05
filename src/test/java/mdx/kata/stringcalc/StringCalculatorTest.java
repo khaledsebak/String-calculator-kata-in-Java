@@ -50,6 +50,13 @@ public class StringCalculatorTest {
         assertResultForGivenInputStringIs(numbersSeparatedWithNewLinesAndCommas, sumOfNumbers);
     }
 
+    @Test
+    public void usesCustomSeparatorDefinedInFirstLineOfInput() throws Exception {
+        String numbersWithCustomSeparator = "//;\n5;6";
+        int sumOfNumbers = 5 + 6;
+        assertResultForGivenInputStringIs(numbersWithCustomSeparator, sumOfNumbers);
+    }
+
     private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
         int actualResult = new StringCalculator().add(inputString);
         assertEquals(format("sum of numbers in input string \"%s\"", inputString), expectedResult, actualResult);
