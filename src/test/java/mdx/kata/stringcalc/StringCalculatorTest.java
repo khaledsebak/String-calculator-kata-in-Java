@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static java.lang.String.format;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 /**
  * @author Marcin Deryło <marcinderylo@gmail.com>
@@ -75,8 +76,34 @@ public class StringCalculatorTest {
         assertResultForGivenInputStringIs(dotSeparatedNumbers, 17 + 18);
     }
 
+    @Test
+    public void exceptionIsThrownWhenNegativeNumberIsFound() throws Exception {
+        String numbersWithNegativeNumber = "5,4,-2";
+        assertInputStringCausesExceptionToBeThrownWithMessage(numbersWithNegativeNumber, "Negatives not allowed: [-2]");
+    }
+
+    @Test
+    public void exceptionIsThrownWhenMultipleNegativesAreFound() throws Exception {
+        String numbersWithNegativeNumber = "5,-4,-2";
+        assertInputStringCausesExceptionToBeThrownWithMessage(numbersWithNegativeNumber, "Negatives not allowed: [-4, -2]");
+    }
+
+    private void assertInputStringCausesExceptionToBeThrownWithMessage(String inputString, String expectedErrorMsg) {
+        try {
+            calculateSum(inputString);
+            fail("exception should have been thrown");
+        } catch (Exception e) {
+            assertEquals("failure message", expectedErrorMsg, e.getMessage());
+        }
+
+    }
+
     private void assertResultForGivenInputStringIs(String inputString, int expectedResult) {
-        int actualResult = new StringCalculator().add(inputString);
+        int actualResult = calculateSum(inputString);
         assertEquals(format("sum of numbers in input string \"%s\"", inputString), expectedResult, actualResult);
+    }
+
+    private int calculateSum(String inputString) {
+        return new StringCalculator().add(inputString);
     }
 }
