@@ -12,10 +12,7 @@ import static com.google.common.collect.Lists.transform;
  * @author Marcin Deryło <marcinderylo@gmail.com>
  */
 public class StringCalculator {
-    /**
-     * @param comaSeparatedNumbers coma-separated numbers
-     * @return sum of numbers (1 or 2) contained in the input string (<code>0</code> for empty string)
-     */
+
     public int add(String comaSeparatedNumbers) {
         List<Integer> terms = parseTerms(comaSeparatedNumbers);
         return sumOf(terms);
@@ -23,20 +20,10 @@ public class StringCalculator {
 
     private List<Integer> parseTerms(String comaSeparatedNumbers) {
         List<String> stringTerms = Lists.newArrayList();
-        if (containsMultipleComaSeparatedNumbers(comaSeparatedNumbers)) {
+        if (!comaSeparatedNumbers.isEmpty()) {
             stringTerms.addAll(split(comaSeparatedNumbers));
-        } else if (isASingleNumber(comaSeparatedNumbers)) {
-            stringTerms.add(comaSeparatedNumbers);
         }
         return parseIntegers(stringTerms);
-    }
-
-    private boolean isASingleNumber(String comaSeparatedNumbers) {
-        return !comaSeparatedNumbers.isEmpty();
-    }
-
-    private boolean containsMultipleComaSeparatedNumbers(String comaSeparatedNumbers) {
-        return comaSeparatedNumbers.contains(",");
     }
 
     private List<Integer> parseIntegers(List<String> stringTerms) {

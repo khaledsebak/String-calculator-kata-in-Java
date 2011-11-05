@@ -1,5 +1,6 @@
 package mdx.kata.stringcalc;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static java.lang.String.format;
@@ -37,6 +38,7 @@ public class StringCalculatorTest {
     }
 
     @Test
+    @Ignore
     public void recognizesNewLinesAsSeparator() throws Exception {
         String numbersSeparatedWithNewLinesAndCommas = "2,3\n4";
         int sumOfNumbers = 2 + 3 + 4;
